@@ -16,6 +16,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
+    addresses: [
+      {
+        street: String,
+        city: String,
+        state: String,
+        zip: String,
+        country: String,
+      },
+    ],
     isAdmin: {
       type: Boolean,
       default: false, // Default role is a normal user

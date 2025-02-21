@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-
+require("dotenv").config();
 const authRouter = express.Router();
 
 // **Generate JWT Token**
@@ -13,7 +13,7 @@ const generateToken = (id) => {
 // **Register User**
 authRouter.post("/register", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password ,isAdmin} = req.body;
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -22,7 +22,7 @@ authRouter.post("/register", async (req, res) => {
     }
 
     // Create new user
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ name, email, password,isAdmin });
 
     if (user) {
       res.status(201).json({
@@ -36,6 +36,7 @@ authRouter.post("/register", async (req, res) => {
       res.status(400).json({ message: "Invalid user data" });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server error", error });
   }
 });
