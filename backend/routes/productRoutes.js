@@ -8,10 +8,25 @@ const productRouter = express.Router();
 // Add a product (Admin only)
 productRouter.post("/add", protect, admin, async (req, res) => {
   try {
-    const { name, description, price, discount, category, brand, stock, images } = req.body;
+    const { 
+      name, 
+      description, 
+      price, 
+      discount, 
+      category, 
+      brand, 
+      stock, 
+      images, 
+      dimensions, 
+      weight 
+    } = req.body;
 
-    if (!name || !description || !price || !category || !brand || !stock) {
+    if (!name || !description || !price || !category || !brand || !stock || !dimensions || !weight) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    if (!dimensions.length || !dimensions.width || !dimensions.height) {
+      return res.status(400).json({ message: "Dimensions must include length, width, and height" });
     }
 
     const product = new Products({
@@ -23,6 +38,8 @@ productRouter.post("/add", protect, admin, async (req, res) => {
       brand,
       stock,
       images,
+      dimensions,
+      weight,
     });
 
     await product.save();
@@ -31,6 +48,7 @@ productRouter.post("/add", protect, admin, async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
 productRouter.get("/category/:category", async (req, res) => {
     try {
         const { category } = req.params;
@@ -56,6 +74,29 @@ productRouter.get("/category/:category", async (req, res) => {
       } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
       }
+  });
+
+  productRouter.get("/all", async (req, res) => {
+    try {
+      let { page, limit } = req.query;
+  
+      page = parseInt(page) || 1; // Default to page 1
+      limit = parseInt(limit) || 5; // Default limit to 10
+  
+      const skip = (page - 1) * limit;
+  
+      const products = await Products.find().skip(skip).limit(limit);
+      const totalProducts = await Products.countDocuments();
+  
+      res.status(200).json({
+        totalProducts,
+        totalPages: Math.ceil(totalProducts / limit),
+        currentPage: page,
+        products,
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Server error", error: error.message });
+    }
   });
   
 module.exports = productRouter;
