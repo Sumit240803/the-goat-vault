@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import React from "react";
 import { NextAppProvider } from "@toolpad/core/nextjs";
 import ThemeProviderWrapper from "./components/ThemeProviderWrapper";
+import Navbar from "./components/General/Navbar";
 
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -20,10 +21,11 @@ const BRANDING = {};
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-white`}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProviderWrapper> {/* Move theme logic here */}
             <NextAppProvider navigation={NAVIGATION} branding={BRANDING}>
+              <Navbar/>
               {children}
             </NextAppProvider>
           </ThemeProviderWrapper>
