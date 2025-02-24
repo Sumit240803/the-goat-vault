@@ -56,7 +56,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* ✅ Fix: Wrapped Button Inside Motion.div to Apply Changes */}
+         
           <motion.div
             className="mt-6"
             whileHover={{ scale: 1.1 }}
@@ -70,8 +70,10 @@ export default function Home() {
         </Box>
       </Container>
       <Container maxWidth={false} disableGutters>
-        <Box>
-          <Typography>Recent Collections</Typography>
+        <Box sx={{height : "100vh"}}>
+          <motion.div initial = "offscreen" whileInView="onscreen" viewport={{amount : 0.8}}>
+          <Typography className="pt-10 text-2xl" sx={{textAlign : "center" , color : "black"}}>Our Collections</Typography>
+          </motion.div>
         </Box>
       </Container>
     </div>
