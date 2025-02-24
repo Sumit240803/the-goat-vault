@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AppBar, Toolbar, IconButton, Typography, Button, Menu, MenuItem, Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -12,20 +13,21 @@ const Navbar = () => {
   const handleMenuClose = () => setAnchorEl(null);
 
   return (
-    <AppBar className="bg-white text-black" position="static" sx={{ backgroundColor: "#333" }}>
+    <AppBar className="bg-black text-white absolute z-50 opacity-85" position="static" >
       <Toolbar>
         {/* Logo / Brand Name */}
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <Link href="/" className="text-black font-bold">
-            The Goat Vault
+        <Typography variant="h6"  sx={{ flexGrow: 1 }}>
+          <Link href="/" className="text-white text-xl font-bold">
+            <Image src={"/products/logo.png"} width={50} height={50} alt="logo"/>
           </Link>
         </Typography>
 
         {/* Desktop Navigation */}
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <Button color="inherit" component={Link} href="/shop">Shop</Button>
+          <Button className="" color="inherit" component={Link} href="/shop">Shop</Button>
           <Button color="inherit" component={Link} href="/about">About</Button>
-          <Button color="inherit" component={Link} href="/contact">Contact</Button>
+          <Button color="inherit" component={Link} href="/about">Account</Button>
+         
         </Box>
 
         {/* Mobile Menu */}
