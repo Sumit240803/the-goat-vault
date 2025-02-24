@@ -1,8 +1,16 @@
 "use client";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import Card from "./components/Products/Card";
 
 export default function Home() {
+  const productData = {
+    name: "Nike Air Max",
+    description: "Comfortable and stylish sneakers for everyday wear.",
+    price: "149.99",
+    image: "/products/1.jpg",
+    tag: "New Arrival",
+  };
   return (
     <div>
       <Container className="relative" maxWidth={false} disableGutters>
@@ -69,11 +77,20 @@ export default function Home() {
           </motion.div>
         </Box>
       </Container>
-      <Container maxWidth={false} disableGutters>
+      <Container className="bg-black" maxWidth={false} disableGutters>
         <Box sx={{height : "100vh"}}>
-          <motion.div initial = "offscreen" whileInView="onscreen" viewport={{amount : 0.8}}>
-          <Typography className="pt-10 text-2xl" sx={{textAlign : "center" , color : "black"}}>Our Collections</Typography>
+          <motion.div whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}>
+          <Typography className="py-10 text-white text-4xl" sx={{textAlign : "center" , color : "black"}}>Our Collections</Typography>
           </motion.div>
+          <div className="flex justify-around">
+
+          <Card product={productData}/>
+          <Card product={productData}/>
+          <Card product={productData}/>
+          </div>
+         
         </Box>
       </Container>
     </div>
