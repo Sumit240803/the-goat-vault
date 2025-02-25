@@ -2,14 +2,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ product }) => {
+const ProdCard = ({ product }) => {
   return (
     <motion.div
       className="bg-white rounded-2xl hover:shadow-white shadow-sm overflow-hidden w-80 hover:shadow-md transition-shadow duration-300"
       whileHover={{ scale: 1.05 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
     >
       {/* Product Image */}
       <div className="relative">
@@ -41,4 +41,4 @@ const Card = ({ product }) => {
   );
 };
 
-export default Card;
+export default ProdCard;
