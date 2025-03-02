@@ -1,23 +1,19 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { easeIn, motion } from "framer-motion";
+import { easeInOut, easeOut } from "motion";
 
 const ProdCard = ({ product }) => {
   return (
-    <motion.div
-      className="bg-white rounded-2xl hover:shadow-white shadow-sm overflow-hidden w-80 hover:shadow-md transition-shadow duration-300"
-      whileHover={{ scale: 1.05 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-    >
+   <div className="border border-opacity-15 border-black">
+
       {/* Product Image */}
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-56 object-cover"
-        />
+          />
       </div>
 
       {/* Product Info */}
@@ -27,17 +23,18 @@ const ProdCard = ({ product }) => {
 
         {/* Price & CTA */}
         <div className="flex justify-between items-center mt-4">
-          <span className="text-lg font-bold text-green-600">${product.price}</span>
+          <span className="text-lg font-bold text-black">${product.price}</span>
           <motion.button
-            className="bg-black text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
+            className="bg-black text-white px-4 py-2  font-semibold hover:bg-gray-900 transition duration-300"
+           
+        
+            >
             Add to Cart
           </motion.button>
         </div>
       </div>
-    </motion.div>
+            </div>
+   
   );
 };
 
