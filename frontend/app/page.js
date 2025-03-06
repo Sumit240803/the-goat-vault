@@ -224,13 +224,13 @@ export default function Home() {
         <Typography className="text-4xl font-bold">The Goat Vault</Typography>
 
         <Box className="flex space-x-6">
-          <a href="#" className="text-gray-400 hover:text-white transition">
+          <a href="https://www.instagram.com/thegoat_vault?igsh=N2swMjMyc2ZrZGZn" className="text-gray-400 hover:text-white transition">
             <FaFacebook size={24} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition">
+          <a href="https://www.instagram.com/thegoat_vault?igsh=N2swMjMyc2ZrZGZn" className="text-gray-400 hover:text-white transition">
             <FaTwitter size={24} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition">
+          <a href="https://www.instagram.com/thegoat_vault?igsh=N2swMjMyc2ZrZGZn" className="text-gray-400 hover:text-white transition">
             <FaInstagram size={24} />
           </a>
         </Box>
