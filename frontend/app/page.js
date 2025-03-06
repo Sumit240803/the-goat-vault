@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import ProdCard from "./components/Products/Card";
 import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
-
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 export default function Home() {
   const productData = {
@@ -93,110 +93,158 @@ export default function Home() {
 </Container>
 
      {/**/}
-      <Container maxWidth={false} disableGutters className="bg-black text-white ">
-      <div className="flex justify-between items-center ">
-        {/* Product Image */}
-        <Image src={"/products/3.jpg"} width={500} height={500} alt="Highlander Jeans for Women" className="" />
+     <Container maxWidth={false} disableGutters className="bg-black text-white ">
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+        {/* Product Image (Left) */}
+        <Image 
+          src={"/products/3.jpg"} 
+          width={500} 
+          height={500} 
+          alt="Highlander Jeans for Women" 
+          className="w-full md:w-auto object-cover"
+        />
 
         {/* Product Details */}
-        <div className="w-full px-10 flex flex-col items-center justify-center space-y-32">
-          <h2 className="text-center text-4xl font-bold ">ELEGANCE</h2>
-          
-          {/* Bullet Points */}
-          <h2 className="text-center text-3xl ">
-            Luxe Clothes For Every Occasion
-          </h2>
-          <button className="bg-white text-black w-24 h-10 text-lg font-bold">Shop</button>
+        <div className="w-full md:w-1/3 px-5 flex flex-col items-center justify-center space-y-10 text-center">
+          <h2 className="text-4xl font-bold">ELEGANCE</h2>
+          <h2 className="text-3xl">Luxe Clothes For Every Occasion</h2>
+          <button className="bg-white text-black w-24 h-10 text-lg font-bold rounded-md hover:bg-gray-300 transition">
+            Shop
+          </button>
         </div>
-        <Image src={"/products/4.jpg"} width={562} height={400} alt="Highlander Jeans for Women" className="" />
+
+        {/* Product Image (Right) */}
+        <Image 
+          src={"/products/1.jpg"} 
+          width={500} 
+          height={400} 
+          alt="Highlander Jeans for Women" 
+          className="w-full md:w-auto object-cover"
+        />
       </div>
     </Container>
-    <Container className="bg-white border border-black" maxWidth={false} disableGutters>
-        <Box sx={{height : "100vh"}}>
-        
-          <Typography className="py-10 text-white text-4xl" sx={{textAlign : "center" , color : "black"}}>Our Collections</Typography>
-         
-          <div className="flex justify-around items-center">
+    <Container className="bg-white border min-h-fit border-black" maxWidth={false} disableGutters>
+      <Box className="flex flex-col items-center py-10 min-h-screen">
+        {/* Heading */}
+        <Typography className="text-4xl font-bold text-black text-center">Our Collections</Typography>
 
-          <ProdCard product={productData}/>
-          <ProdCard product={productData2}/>
-          <ProdCard product={productData3}/>
-          </div>
-         
-        </Box>
-      </Container>
-      <Container 
+        {/* Product Cards */}
+        <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
+          <ProdCard product={productData} />
+          <ProdCard product={productData2} />
+          <ProdCard product={productData3} />
+        </div>
+      </Box>
+    </Container>
+    <Container
       sx={{
-        backgroundImage: "url('/products/chooseus-bg-1.jpg')", // Replace with your image path
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "100vh",
-            display: "flex",
-            
-            flexDirection: "column",
-      }}
-      maxWidth={false} disableGutters>
-    
-      <Box
-      sx={{
-        backgroundColor : "rgba(255, 255, 255, 0.7)",
-        margin : "20px",
+        backgroundImage: "url('/products/chooseus-bg-1.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         
+        display: "flex",
+        flexDirection: "column",
       }}
-      textAlign="center" py={4}>
+      className="min-h-screen"
+      maxWidth={false}
+      disableGutters
+    >
+      {/* Heading Section */}
+      <Box
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          margin: "20px",
+        }}
+        textAlign="center"
+        py={4}
+      >
         <motion.div
-           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-           initial={{ opacity: 0, y: 50, scale: 0.9 }}
-           transition={{ duration: 0.6, ease: "easeOut" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Typography className="text-black text-4xl" variant="h4" fontWeight="bold">
             What We Offer
           </Typography>
         </motion.div>
       </Box>
+
+      {/* Cards Section */}
       <Box>
-      <div className="flex justify-between p-5">
-      <div className="w-1/3 m-4 min-h-96 p-6 bg-white text-black opacity-90 shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <Image
-          src="/products/3.jpg" // Replace with your actual image path
-          alt="Premium Quality"
-          width={300}
-          height={160}
-          className="w-full h-40 object-cover rounded-md mb-4"
-        />
-        <h2 className="text-xl font-bold mb-2">Premium Quality</h2>
-        <p className="text-gray-700">Explore our top-tier branded products with premium quality and durability.</p>
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 p-5">
+          {/* Card 1 */}
+          <div className="min-h-96 p-6 bg-white text-black opacity-90 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Image
+              src="/products/3.jpg"
+              alt="Premium Quality"
+              width={300}
+              height={160}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h2 className="text-xl font-bold mb-2">Premium Quality</h2>
+            <p className="text-gray-700">
+              Explore our top-tier branded products with premium quality and durability.
+            </p>
+          </div>
 
-      <div className="w-1/3 m-4 min-h-96 p-6 bg-white text-black opacity-90  shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <Image
-          src="/products/4.jpg" // Replace with your actual image path
-          alt="Latest Trends"
-          width={300}
-          height={160}
-          className="w-full h-40 object-cover rounded-md mb-4"
-        />
-        <h2 className="text-xl font-bold mb-2">Latest Trends</h2>
-        <p className="text-gray-700">Stay ahead with the latest branded products, ensuring you get the newest designs.</p>
-      </div>
+          {/* Card 2 */}
+          <div className="min-h-96 p-6 bg-white text-black opacity-90 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Image
+              src="/products/4.jpg"
+              alt="Latest Trends"
+              width={300}
+              height={160}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h2 className="text-xl font-bold mb-2">Latest Trends</h2>
+            <p className="text-gray-700">
+              Stay ahead with the latest branded products, ensuring you get the newest designs.
+            </p>
+          </div>
 
-      <div className="w-1/3 m-4 min-h-96 p-6 bg-white text-black opacity-90  shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <Image
-          src="/products/2.jpg" // Replace with your actual image path
-          alt="Affordable Pricing"
-          width={300}
-          height={160}
-          className="w-full h-40 object-cover rounded-md mb-4"
-        />
-        <h2 className="text-xl font-bold mb-2">Affordable Pricing</h2>
-        <p className="text-gray-700">Get the best value for your money with our competitive prices on branded products.</p>
-      </div>
-    </div>
-
+          {/* Card 3 */}
+          <div className="min-h-96 p-6 bg-white text-black opacity-90 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Image
+              src="/products/2.jpg"
+              alt="Affordable Pricing"
+              width={300}
+              height={160}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h2 className="text-xl font-bold mb-2">Affordable Pricing</h2>
+            <p className="text-gray-700">
+              Get the best value for your money with our competitive prices on branded products.
+            </p>
+          </div>
+        </div>
       </Box>
+    </Container>
+    <Container className="bg-gray-900 text-white" maxWidth={false} disableGutters>
+      <Box className="flex flex-col items-center py-10 space-y-6">
+        <Typography className="text-4xl font-bold">The Goat Vault</Typography>
 
-      
+        <Box className="flex space-x-6">
+          <a href="#" className="text-gray-400 hover:text-white transition">
+            <FaFacebook size={24} />
+          </a>
+          <a href="#" className="text-gray-400 hover:text-white transition">
+            <FaTwitter size={24} />
+          </a>
+          <a href="#" className="text-gray-400 hover:text-white transition">
+            <FaInstagram size={24} />
+          </a>
+        </Box>
+
+        <Box className="text-gray-400 text-sm">
+          <a href="#" className="hover:text-white px-3">About</a> |
+          <a href="#" className="hover:text-white px-3">Privacy</a> |
+          <a href="#" className="hover:text-white px-3">Contact</a>
+        </Box>
+
+        <Typography className="text-gray-500 text-xs">
+          © {new Date().getFullYear()} The Goat Vault. All Rights Reserved.
+        </Typography>
+      </Box>
     </Container>
     </div>
   );
