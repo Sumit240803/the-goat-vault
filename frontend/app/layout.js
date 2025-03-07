@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProviderWrapper> {/* Move theme logic here */}
             <NextAppProvider navigation={NAVIGATION} branding={BRANDING}>
-              <Navbar/>
+             
               {children}
             </NextAppProvider>
           </ThemeProviderWrapper>

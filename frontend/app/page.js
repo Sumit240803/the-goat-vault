@@ -5,6 +5,7 @@ import ProdCard from "./components/Products/Card";
 import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import Navbar from "./components/General/Navbar";
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 export default function Home() {
   const productData = {
@@ -30,6 +31,9 @@ export default function Home() {
   };
   return (
     <div>
+      <div>
+      <Navbar/>
+      </div>
       <Container className="relative" maxWidth={false} disableGutters>
   {/* Overlay for Dark Effect */}
   <div className="absolute inset-0 bg-black opacity-60"></div>

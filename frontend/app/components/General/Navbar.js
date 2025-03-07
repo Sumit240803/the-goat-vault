@@ -26,7 +26,7 @@ const Navbar = () => {
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           <Button className="" color="inherit" component={Link} href="/shop">Shop</Button>
           <Button color="inherit" component={Link} href="/about">About</Button>
-          <Button color="inherit" component={Link} href="/about">Account</Button>
+          <Button color="inherit" component={Link} href="/pages/account">Account</Button>
          
         </Box>
 
