@@ -1,8 +1,10 @@
 "use client";
-import { login, register } from "@/app/utils/authUtils";
+import { login, register, setToken } from "@/app/utils/authUtils";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Auth = () => {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
 
@@ -24,16 +26,20 @@ const Auth = () => {
         console.log("Logging in...");
         const loginUser = await login(formData.email, formData.password);
         if (loginUser) {
-          console.log("Login successful:", loginUser);
-          setFormData({ email: "", password: "", name: "" }); // Clear form
+          setToken(loginUser.token).then(()=> router.replace("/pages/account")).catch(err=>{console.log(err)})
+
+          
+          //console.log("Login successful:", loginUser);
+          setFormData({ email: "", password: "", name: "" }); 
         }
       } else {
         console.log("Registering...");
         const registerUser = await register(formData.name, formData.email, formData.password);
         if (registerUser) {
-          console.log("Registration successful:", registerUser);
-          setFormData({ email: "", password: "", name: "" }); // Clear form
-          setIsLogin(true); // Switch to login after registration
+          setToken(registerUser.token).then(e=>{console.log(e)}).catch(err=>{console.log(err)})
+        //  console.log("Registration successful:", registerUser);
+          setFormData({ email: "", password: "", name: "" });
+          setIsLogin(true); 
         }
       }
     } catch (error) {

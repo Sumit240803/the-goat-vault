@@ -1,4 +1,5 @@
 import axios from "axios";
+import { resolve } from "styled-jsx/css";
 
 export const isLogged=()=>{
     if(typeof window != "undefined"){
@@ -8,6 +9,32 @@ export const isLogged=()=>{
         }
         return false;
     }
+}
+
+export const getToken=()=>{
+  if(typeof window !="undefined"){
+    const token = localStorage.getItem("token");
+    if(token !=''){
+      return token;
+    }
+  }
+}
+export function setToken(token){
+  return new Promise((resolve , reject)=>{
+  if(typeof window !="undefined"){
+      setTimeout(()=>{
+        if(token){
+          localStorage.setItem("token" , token);
+          localStorage.setItem("loggedState" , true);
+          resolve("Token Stored");
+        }else{
+          reject("Token required");
+        }
+      },100)
+    }else{
+      reject("Window Object is not available")
+    }
+  })
 }
 
 export const login = async (email, password) => {
