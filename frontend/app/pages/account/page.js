@@ -9,7 +9,7 @@ const Account = () => {
         if(!isLogged()){
             router.replace("/pages/auth")
         }
-    },[])
+    },[router])
   return (
     <div>This is Account Page</div>
   )

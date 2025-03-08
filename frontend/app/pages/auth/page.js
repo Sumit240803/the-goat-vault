@@ -1,4 +1,5 @@
 "use client";
+import { login, register } from "@/app/utils/authUtils";
 import React, { useState } from "react";
 
 const Auth = () => {
@@ -9,9 +10,35 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(isLogin ? "Logging in..." : "Registering...", formData);
+
+    // Validation before API call
+    if (!formData.email || !formData.password || (!isLogin && !formData.name)) {
+      console.error("All required fields must be filled!");
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        console.log("Logging in...");
+        const loginUser = await login(formData.email, formData.password);
+        if (loginUser) {
+          console.log("Login successful:", loginUser);
+          setFormData({ email: "", password: "", name: "" }); // Clear form
+        }
+      } else {
+        console.log("Registering...");
+        const registerUser = await register(formData.name, formData.email, formData.password);
+        if (registerUser) {
+          console.log("Registration successful:", registerUser);
+          setFormData({ email: "", password: "", name: "" }); // Clear form
+          setIsLogin(true); // Switch to login after registration
+        }
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+    }
   };
 
   return (
@@ -56,6 +83,7 @@ const Auth = () => {
             <button
               type="submit"
               className="w-full bg-black hover:bg-gray-900 text-white p-3 rounded-md transition"
+              
             >
               {isLogin ? "Login" : "Register"}
             </button>
