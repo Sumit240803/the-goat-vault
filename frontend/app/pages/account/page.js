@@ -11,7 +11,9 @@ const Account = () => {
         }
     },[router])
   return (
-    <div>This is Account Page</div>
+    <div>
+      
+    </div>
   )
 }
 

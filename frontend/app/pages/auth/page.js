@@ -1,6 +1,6 @@
 "use client";
 import { login, register, setToken } from "@/app/utils/authUtils";
-import { redirect, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Auth = () => {

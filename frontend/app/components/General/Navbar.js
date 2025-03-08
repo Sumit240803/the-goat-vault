@@ -5,6 +5,7 @@ import { AppBar, Toolbar, IconButton, Typography, Button, Menu, MenuItem, Box } 
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import Image from "next/image";
+import { FaBagShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -24,9 +25,10 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <Button className="" color="inherit" component={Link} href="/shop">Shop</Button>
-          <Button color="inherit" component={Link} href="/about">About</Button>
+          <Button className="" color="inherit" component={Link} href="/pages/shop">Shop</Button>
+         
           <Button color="inherit" component={Link} href="/pages/account">Account</Button>
+          <Button color="inherit" component={Link} href="/pages/account"><FaBagShopping /></Button>
          
         </Box>
 
@@ -35,9 +37,10 @@ const Navbar = () => {
           <MenuIcon />
         </IconButton>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-          <MenuItem onClick={handleMenuClose} component={Link} href="/shop">Shop</MenuItem>
-          <MenuItem onClick={handleMenuClose} component={Link} href="/about">About</MenuItem>
-          <MenuItem onClick={handleMenuClose} component={Link} href="/contact">Contact</MenuItem>
+          <MenuItem onClick={handleMenuClose} component={Link} href="/pages/shop">Shop</MenuItem>
+        
+          <MenuItem onClick={handleMenuClose} component={Link} href="/pages/account">Account</MenuItem>
+          <MenuItem color="inherit" component={Link} href="/pages/account"><FaBagShopping /></MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
